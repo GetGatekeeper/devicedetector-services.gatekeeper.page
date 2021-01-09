@@ -5,6 +5,8 @@ require_once __DIR__ . '/../lib/vendor/autoload.php';
 use DeviceDetector\DeviceDetector;
 use DeviceDetector\Parser\Device\AbstractDeviceParser;
 
+header('Cache-Control: public, max-age=86400');
+
 if(!isset($_GET['userAgent'])) {
     http_response_code(400);
 }
@@ -15,7 +17,6 @@ $dd = new DeviceDetector($userAgent);
 $dd->parse();
 
 header('Content-Type: application/json');
-header('Cache-Control: public, max-age=86400');
 
 $reply = [
     'isMobile' => $dd->isMobile(),
