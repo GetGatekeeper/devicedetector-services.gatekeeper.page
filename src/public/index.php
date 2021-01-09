@@ -15,6 +15,7 @@ $dd = new DeviceDetector($userAgent);
 $dd->parse();
 
 header('Content-Type: application/json');
+header('Cache-Control: public, max-age=86400');
 
 $reply = [
     'isMobile' => $dd->isMobile(),
